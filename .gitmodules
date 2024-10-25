@@ -1,0 +1,3 @@
+[submodule "lib/protocol/grpc_define"]
+	path = lib/protocol/grpc_define
+	url = https://github.com/city404/v6-public-rpc-proto.git
