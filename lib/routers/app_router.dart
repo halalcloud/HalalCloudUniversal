@@ -1,5 +1,7 @@
 import 'package:calico_disk_manager/constants/config/system_config.dart';
+// import 'package:calico_disk_manager/constants/system/constants.dart';
 import 'package:calico_disk_manager/pages/drivers/drivers_page.dart';
+import 'package:calico_disk_manager/pages/home/file_list.dart';
 import 'package:calico_disk_manager/pages/settings/settings_page.dart';
 import 'package:calico_disk_manager/pages/syncing/syncing_page.dart';
 
@@ -21,6 +23,8 @@ final GlobalKey<NavigatorState> syncingNavigatorKey =
     GlobalKey<NavigatorState>(debugLabel: 'syncing');
 final GlobalKey<NavigatorState> settingsNavigatorKey =
     GlobalKey<NavigatorState>(debugLabel: 'settings');
+final GlobalKey<ScaffoldState> syncingStateKey =
+    GlobalKey<ScaffoldState>(debugLabel: 'profile');
 
 /// The [AppRouter] maintains the main route configuration for the app.
 ///
@@ -37,18 +41,20 @@ class AppRouter {
         child: NavigationErrorPage(error: state.error),
       );
     },
+    // builder: (
     redirect: (BuildContext context, GoRouterState state) {
       if (state.uri.path == '/') {
         return HomePage.path;
       }
       return null;
     },
-
+    
     // Home page
     routes: [
       mainRouter,
     ],
   );
+  
 
   static final StatefulShellRoute mainRouter = StatefulShellRoute.indexedStack(
     parentNavigatorKey: rootNavigatorKey,
@@ -57,7 +63,7 @@ class AppRouter {
       GoRouterState state,
       StatefulNavigationShell navigationShell,
     ) {
-      return ScaffoldShell(navigationShell: navigationShell);
+      return ScaffoldShell(navigationShell: navigationShell, title: "Calico Disk Manager");
     },
     // Home page
     branches: <StatefulShellBranch>[
@@ -73,7 +79,16 @@ class AppRouter {
               );
             },
             routes: <RouteBase>[
-              // Insert main page here
+              GoRoute(
+                name: FileListPage.name,
+                path: FileListPage.path,
+                pageBuilder: (BuildContext context, GoRouterState state) {
+                  return MaterialPage<void>(
+                    child: FileListPage(
+                      queryPath: state.uri.queryParameters['path'] ?? '',),
+                  );
+                },
+              ),
             ],
           ),
         ],
@@ -96,12 +111,12 @@ class AppRouter {
         navigatorKey: syncingNavigatorKey,
         routes: <RouteBase>[
           GoRoute(
-            name: SyncingPage.name,
-            path: SyncingPage.path,
+            name: FirstComponentList.name,
+            path: FirstComponentList.path,
             pageBuilder: (BuildContext context, GoRouterState state) {
-              return const NoTransitionPage<void>(
-                key: ValueKey<String>(SyncingPage.name),
-                child: SyncingPage(),
+              return NoTransitionPage<void>(
+                key: const ValueKey<String>(FirstComponentList.name),
+                child: FirstComponentList(showNavBottomBar: false, showSecondList: false,scaffoldKey: syncingStateKey),
               );
             },
             /*

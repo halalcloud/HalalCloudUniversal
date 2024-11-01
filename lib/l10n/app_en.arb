@@ -1,0 +1,22 @@
+{
+    "@@locale": "en",
+    "title": "HalalCloud",
+    "@title": {
+        "description": "The title of the application",
+        "type": "text",
+        "placeholders": {}
+    },
+    "defaultHead": "HalalCloud",
+    "@defaultHead": {
+        "description": "default head name displayed in the app bar",
+        "type": "text",
+        "placeholders": {}
+    },
+
+    "selectColor": "Select Color",
+    "@selectColor": {
+        "description": "select color",
+        "type": "text",
+        "placeholders": {}
+    }
+  }

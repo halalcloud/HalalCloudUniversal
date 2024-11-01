@@ -1,0 +1,27 @@
+{
+    "@@locale": "zh",
+    "title": "清真云",
+    "@title": {
+        "description": "The title of the application",
+        "type": "text",
+        "placeholders": {}
+    },
+    "message": "欢迎使用 Flutter",
+    "@message": {
+        "description": "A welcome message",
+        "type": "text",
+        "placeholders": {}
+    },
+    "defaultHead": "清真云",
+    "@defaultHead": {
+        "description": "default head name displayed in the app bar",
+        "type": "text",
+        "placeholders": {}
+      },
+      "selectColor": "选择颜色",
+      "@selectColor": {
+        "description": "Prompt to select a color",
+        "type": "text",
+        "placeholders": {}
+      }
+  }

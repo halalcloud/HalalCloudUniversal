@@ -46,8 +46,8 @@ class Storage {
   DateTime modified;
   bool disabled; // if disabled
   bool enableSign;
-  Sort sort;
-  Proxy proxy;
+  Sort? sort;
+  Proxy? proxy;
 
   Storage({
     required this.id,
