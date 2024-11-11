@@ -17,11 +17,17 @@
         "description": "default head name displayed in the app bar",
         "type": "text",
         "placeholders": {}
-      },
-      "selectColor": "选择颜色",
-      "@selectColor": {
+    },
+    "selectColor": "选择颜色",
+    "@selectColor": {
         "description": "Prompt to select a color",
         "type": "text",
         "placeholders": {}
-      }
-  }
+    },
+    "navFiles": "文件",
+    "@navFiles": {
+        "description": "Files",
+        "type": "text",
+        "placeholders": {}
+    }
+}

@@ -114,9 +114,6 @@ class FileListPageState extends ConsumerState<FileListPage> {
     //);
 
     return Scaffold(
-      appBar: AppBar(
-        title: Text('File List: $path'),
-      ),
       body: inited || driverClient.inited
           ? FutureBuilder(
               future: _getData(),

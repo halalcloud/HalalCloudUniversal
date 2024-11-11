@@ -12,11 +12,22 @@
         "type": "text",
         "placeholders": {}
     },
-
     "selectColor": "Select Color",
     "@selectColor": {
         "description": "select color",
         "type": "text",
         "placeholders": {}
+    },
+    "navFiles": "Files",
+    "@navFiles": {
+        "description": "Files",
+        "type": "text",
+        "placeholders": {}
+    },
+    "navHome": "Home",
+    "@navHome": {
+        "description": "Home page of the application",
+        "type": "text",
+        "placeholders": {}
     }
-  }
+}

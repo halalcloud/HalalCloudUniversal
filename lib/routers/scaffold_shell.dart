@@ -1,4 +1,5 @@
 import 'package:calico_disk_manager/constants/system/constants.dart';
+import 'package:calico_disk_manager/routers/navigations.dart';
 // import 'package:calico_disk_manager/pages/home/file_list.dart';
 // import 'package:calico_disk_manager/pages/home/home_page.dart';
 import 'package:calico_disk_manager/widgets/brightness.dart';
@@ -13,7 +14,10 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class ScaffoldShell extends StatefulWidget {
   const ScaffoldShell(
-      {super.key, required this.title, required this.navigationShell});
+      {super.key,
+      required this.title,
+      required this.navigationShell,
+      required this.homeNavigatorKey});
 
   // This widget is the home page of your application. It is stateful, meaning
   // that it has a State object (defined below) that contains fields that affect
@@ -27,6 +31,7 @@ class ScaffoldShell extends StatefulWidget {
   final String title;
 
   final StatefulNavigationShell navigationShell;
+  final GlobalKey<NavigatorState> homeNavigatorKey;
 
   @override
   State<ScaffoldShell> createState() => _MyHomePageState();
@@ -35,12 +40,13 @@ class ScaffoldShell extends StatefulWidget {
 class _MyHomePageState extends State<ScaffoldShell> {
   int _selectedTab = 0;
 
-  void _handleScreenChanged(int screenSelected,bool isSamePage) {
+  void _handleScreenChanged(int screenSelected, bool isSamePage) {
     if (screenSelected < 0 ||
         screenSelected >= widget.navigationShell.route.branches.length) {
       return;
     }
-    widget.navigationShell.goBranch(screenSelected,initialLocation: isSamePage);
+    widget.navigationShell
+        .goBranch(screenSelected, initialLocation: isSamePage);
   }
 
   @override
@@ -48,7 +54,7 @@ class _MyHomePageState extends State<ScaffoldShell> {
     // Define the children to display within the body at different breakpoints.
 
     return AdaptiveScaffold(
-        transitionDuration: Duration(milliseconds: 100),
+        transitionDuration: Duration(milliseconds: 120),
 
         // An option to override the default transition duration.
         // transitionDuration: Duration(milliseconds: _transitionDuration),
@@ -92,38 +98,11 @@ class _MyHomePageState extends State<ScaffoldShell> {
           final isSamePage = _selectedTab == index;
           setState(() {
             _selectedTab = index;
-            _handleScreenChanged(index,isSamePage);
+            _handleScreenChanged(index, isSamePage);
           });
         }, //1
 
-        destinations: const <NavigationDestination>[
-          NavigationDestination(
-            icon: Icon(Icons.inbox_outlined),
-            selectedIcon: Icon(Icons.inbox),
-            label: 'Inbox',
-            tooltip: "12345",
-          ),
-          NavigationDestination(
-            icon: Icon(Icons.article_outlined),
-            selectedIcon: Icon(Icons.article),
-            label: 'Articles',
-          ),
-          NavigationDestination(
-            icon: Icon(Icons.chat_outlined),
-            selectedIcon: Icon(Icons.chat),
-            label: 'Chat',
-          ),
-          NavigationDestination(
-            icon: Icon(Icons.video_call_outlined),
-            selectedIcon: Icon(Icons.video_call),
-            label: 'Video',
-          ),
-          NavigationDestination(
-            icon: Icon(Icons.home_outlined),
-            selectedIcon: Icon(Icons.home),
-            label: 'Inbox',
-          ),
-        ],
+        destinations: Navigations.createNavigationDestinations(context),
         body: (ctx) => Row(children: <Widget>[
               Flexible(
                   flex: mediumWidthBreakpoint.toInt(),
@@ -142,14 +121,32 @@ class _MyHomePageState extends State<ScaffoldShell> {
           ),
         ),
         Flexible(
-          child: ColorSeedButton(
-          ),
+          child: ColorSeedButton(),
         ),
       ],
     );
   }
 
   PreferredSizeWidget createAppBar(BuildContext context) {
+    // GoRouter.of(ho).location;
+    final ctx = widget.homeNavigatorKey.currentContext;
+    if (ctx != null) {
+      if (GoRouter.of(context).routeInformationProvider.value.uri.path ==
+          '/home/file_list') {
+        final parentRoute = ModalRoute.of(ctx);
+        if (parentRoute != null) {
+          final rt = GoRouter.maybeOf(ctx);
+          if (rt != null && rt.canPop()) {
+            return AppBar(
+              leading: BackButton(
+                onPressed: () => rt.pop(),
+              ),
+              title: Text("File Lis///"),
+            );
+          }
+        }
+      }
+    }
     return AppBar(
       title: Text(AppLocalizations.of(context)?.defaultHead ?? 'Qingzhenyun'),
       actions: Breakpoints.small.isActive(context)
@@ -157,14 +154,10 @@ class _MyHomePageState extends State<ScaffoldShell> {
               BrightnessButton(
                 handleBrightnessChange: (bool bright) {},
               ),
-              ColorSeedButton(
-              ),
+              ColorSeedButton(),
               LanguageSelectButton(),
             ]
           : [Container()],
     );
   }
 }
-
-
-

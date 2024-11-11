@@ -63,7 +63,7 @@ class AppRouter {
       GoRouterState state,
       StatefulNavigationShell navigationShell,
     ) {
-      return ScaffoldShell(navigationShell: navigationShell, title: "Calico Disk Manager");
+      return ScaffoldShell(navigationShell: navigationShell, title: "Calico Disk Manager",homeNavigatorKey:homeNavigatorKey);
     },
     // Home page
     branches: <StatefulShellBranch>[

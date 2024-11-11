@@ -272,16 +272,19 @@ class Lists extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final List<int> list = List.generate(10, (index) => index);
+    final List<int> list = List.generate(100, (index) => index);
     // build the list
     return ListView.builder(
       itemCount: list.length,
       itemBuilder: (context, index) {
         return ListTile(
+          contentPadding: EdgeInsets.only(left: 16,right: 8.0), // 调整内边距
+
           title: Text(
             'Item ${list[index]} hhnnnnnnyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy',
             maxLines: 1,
             overflow: TextOverflow.ellipsis,
+
             //style: TextStyle(
             //fontWeight: FontWeight.bold,
           //),
