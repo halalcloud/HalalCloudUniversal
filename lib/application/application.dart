@@ -41,6 +41,16 @@ class MainApplication extends ConsumerWidget {
       routerConfig: AppRouter.router,
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,
+      localeResolutionCallback: (locale, supportedLocales) {
+        for (var supportedLocale in supportedLocales) {
+          debugPrint('Supported locale: ${supportedLocale.languageCode}, loc: ${ locale?.languageCode}');
+          if (supportedLocale.languageCode == locale?.languageCode) {
+            debugPrint('!!!Supported locale: ${supportedLocale.languageCode}');
+            return supportedLocale;
+          }
+        }
+        return supportedLocales.first;
+      },
     );
   }
 }

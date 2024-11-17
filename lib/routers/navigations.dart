@@ -7,25 +7,25 @@ class Navigations {
     
     return <NavigationDestination>[
       NavigationDestination(
-        icon: const Icon(Icons.home_outlined),
+        icon: const Icon(Icons.inbox_outlined),
         selectedIcon: const Icon(Icons.inbox),
-        label: local?.navFiles ?? 'Files',
+        label: local?.navHome ?? 'Home',
         tooltip: "12345",
       ),
       NavigationDestination(
-        icon: Icon(Icons.folder_outlined),
-        selectedIcon: Icon(Icons.folder),
+        icon: Icon(Icons.cloud_outlined),
+        selectedIcon: Icon(Icons.cloud),
         label: local?.navFiles ?? 'Files',
       ),
-      const NavigationDestination(
-        icon: Icon(Icons.cloud_sync_outlined),
-        selectedIcon: Icon(Icons.chat),
-        label: 'Chat',
+      NavigationDestination(
+        icon: Icon(Icons.sync_outlined),
+        selectedIcon: Icon(Icons.sync),
+        label: local?.navSync ?? 'Sync',
       ),
-      const NavigationDestination(
+      NavigationDestination(
         icon: Icon(Icons.settings_outlined),
-        selectedIcon: Icon(Icons.chat),
-        label: 'Chat',
+        selectedIcon: Icon(Icons.settings),
+        label: local?.navSetting ?? 'Settings',
       ),
     ];
   }

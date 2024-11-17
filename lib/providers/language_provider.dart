@@ -6,19 +6,23 @@ class L10n {
   static final all = AppLocalizations.supportedLocales;
 }
 
-class LanguageNotifier extends StateNotifier<Locale> {
-  LanguageNotifier() : super(Locale('en'));
+class LanguageNotifier extends StateNotifier<Locale?> {
+  LanguageNotifier() : super(null);
 
-  void setLocale(Locale locale) {
+  void setLocale(Locale? locale) {
+    if (locale == null) {
+      clearLocale();
+      return;
+    }
     if (!L10n.all.contains(locale)) return;
     state = locale;
   }
 
   void clearLocale() {
-    state = Locale('en');
+    state = null;
   }
 }
 
-final languageProvider = StateNotifierProvider<LanguageNotifier, Locale>((ref) {
+final languageProvider = StateNotifierProvider<LanguageNotifier, Locale?>((ref) {
   return LanguageNotifier();
 });

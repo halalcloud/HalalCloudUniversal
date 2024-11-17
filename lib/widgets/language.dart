@@ -2,6 +2,8 @@
 import 'package:calico_disk_manager/providers/language_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
 
 class LanguageSelectButton extends ConsumerWidget {
   const LanguageSelectButton({super.key
@@ -19,11 +21,33 @@ class LanguageSelectButton extends ConsumerWidget {
       icon: const Icon(
         Icons.palette_outlined,
       ),
-      tooltip: 'Select a seed color',
+      tooltip: AppLocalizations.of(context)?.selectLanguage,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
       itemBuilder: (context) {
-        return List.generate(L10n.all.length, (index) {
-          final Locale currentLocale = L10n.all[index];
+        return List.generate(L10n.all.length+1, (index) {
+
+          if (index == 0) {
+            return PopupMenuItem(
+              value: index,
+              enabled: locale != null,
+              child: Wrap(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(left: 10),
+                    child: Icon(
+                      Icons.auto_mode_outlined,
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 20),
+                    child: Text('Auto'),
+                  ),
+                ],
+              ),
+            );
+          }
+
+          final Locale currentLocale = L10n.all[index - 1];
           // ColorSeed currentColor = ColorSeed.values[index];
 
           return PopupMenuItem(
@@ -50,7 +74,11 @@ class LanguageSelectButton extends ConsumerWidget {
         });
       },
       onSelected: (int index) {
-        languageNotifier.setLocale(L10n.all[index]);
+        if (index == 0) {
+          languageNotifier.clearLocale();
+          return;
+        }
+        languageNotifier.setLocale(L10n.all[index-1]);
       },
     );
   }

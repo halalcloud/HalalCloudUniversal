@@ -24,9 +24,33 @@
         "type": "text",
         "placeholders": {}
     },
+    "selectLanguage": "选择语言",
+    "@selectLanguage": {
+        "description": "Prompt to select a language",
+        "type": "text",
+        "placeholders": {}
+    },
     "navFiles": "文件",
     "@navFiles": {
         "description": "Files",
+        "type": "text",
+        "placeholders": {}
+    },
+    "navHome": "主页",
+    "@navHome": {
+        "description": "Home page of the application",
+        "type": "text",
+        "placeholders": {}
+    },
+    "navSync": "同步",
+    "@navSync": {
+        "description": "Sync",
+        "type": "text",
+        "placeholders": {}
+    },
+    "navSetting": "设置",
+    "@navSetting": {
+        "description": "Settings",
         "type": "text",
         "placeholders": {}
     }

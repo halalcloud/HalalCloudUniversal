@@ -18,6 +18,12 @@
         "type": "text",
         "placeholders": {}
     },
+    "selectLanguage": "Select Language",
+    "@selectLanguage": {
+        "description": "select language",
+        "type": "text",
+        "placeholders": {}
+    },
     "navFiles": "Files",
     "@navFiles": {
         "description": "Files",
@@ -27,6 +33,18 @@
     "navHome": "Home",
     "@navHome": {
         "description": "Home page of the application",
+        "type": "text",
+        "placeholders": {}
+    },
+    "navSync": "Sync",
+    "@navSync": {
+        "description": "Sync page of the application",
+        "type": "text",
+        "placeholders": {}
+    },
+    "navSetting": "Setting",
+    "@navSetting": {
+        "description": "Setting page of the application",
         "type": "text",
         "placeholders": {}
     }
