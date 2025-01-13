@@ -1,17 +1,18 @@
-# calico_disk_manager
+# HalalCloudUniversal
 
-A new Flutter project.
+该客户端作为清真云的示范应用程序，实现了清真云的所有功能.
 
-## Getting Started
+## 快速开始
 
-This project is a starting point for a Flutter application.
+git clone.
 
-A few resources to get you started if this is your first Flutter project:
+flutter run
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+参考资料:
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
-# CalicoDiskManager
+- [官网](https://2dland.yuque.com/r/organizations/homepage)
+- [API 文档](https://github.com/city404/v6-public-rpc-proto/wiki)
+
+如果需要帮助
+[online documentation](https://github.com/city404/v6-public-rpc-proto/wiki).
+# 原名：CalicoDiskManager
